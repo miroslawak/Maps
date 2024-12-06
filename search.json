@@ -7,55 +7,6 @@
     "text": "This is an example of dynamic coropleth maps created in R (RStudio), using the ‘Leaflet’ and ‘ggplot2’ libraries. The maps show the area and population of Poland by voivodeship (province) and selected county (district)."
   },
   {
-    "objectID": "index.html#polska.-powierzchnia-i-ludność",
-    "href": "index.html#polska.-powierzchnia-i-ludność",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Polska. Powierzchnia i ludność",
-    "text": "Polska. Powierzchnia i ludność\n\n\nCode\nlabels &lt;- sprintf(\n  \"&lt;strong&gt;Polska&lt;/strong&gt;&lt;br/&gt;stolica: Warszawa \n  &lt;br/&gt;powierzchnia: %g km&lt;sup&gt;2&lt;/sup&gt;\n  &lt;br/&gt;ludność: %gm / mln\", pow_Polski, lud_Polski) %&gt;% \n  lapply(htmltools::HTML)\n\nsymbols &lt;- makeSymbolsSize(\n  values = woj$znacznik,\n  shape = 'circle',\n  color = 'yellow',\n  fillColor = 'yellow',\n  opacity = .7,\n  baseSize = 5\n)\n\nmapa_Polski &lt;- leaflet(data = Poland) %&gt;%\n  addTiles() %&gt;%\n  setView(lng = 20, lat = 52, zoom = 3.5) %&gt;% \n  addPolygons(data = Poland,\n              weight = 1,\n              fillOpacity = 0.8,\n              fillColor = \"#086A87\", \n              label = labels,\n              labelOptions = labelOptions(\n                  style = list(\"font-weight\" = \"normal\", padding = \"3px 8px\"),\n                  textsize = \"15px\", direction = \"auto\")) %&gt;%\n  addMarkers(data = Poland, icon = symbols,  21.03,52.22,2,  popup = \"Warszawa\") %&gt;%\n  addLegend(\"bottomright\", colors = 'yellow', labels = \"stolica\",\n            title = \"Warszawa\",   opacity = 1, ) \n\n\nmapa_Polski\n\n\n\n\n\n\n\n\nFigure 1: Polska. Powierzchnia i ludność"
-  },
-  {
-    "objectID": "index.html#województwa.-powierzchnia",
-    "href": "index.html#województwa.-powierzchnia",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Województwa. Powierzchnia",
-    "text": "Województwa. Powierzchnia\n\n\n\n\n\n\n\n\nFigure 2: Województwa. Powierzchnia"
-  },
-  {
-    "objectID": "index.html#województwa.-ludność",
-    "href": "index.html#województwa.-ludność",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Województwa. Ludność",
-    "text": "Województwa. Ludność\n\n\n\n\n\n\n\n\nFigure 3: Województwa. Ludność"
-  },
-  {
-    "objectID": "index.html#powiaty",
-    "href": "index.html#powiaty",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Powiaty",
-    "text": "Powiaty\n\n\n\n\n\n\n\n\nFigure 4: Powiaty"
-  },
-  {
-    "objectID": "index.html#wybrane-powiaty",
-    "href": "index.html#wybrane-powiaty",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Wybrane powiaty",
-    "text": "Wybrane powiaty\nZ ogólnej liczby 380 powiatów Polski wybrano powiaty województw lubuskiego i lubelskiego.\n\n\n\n\n\n\n\n\n\n\n\nFigure 5: Województwa lubuskie i lubelskie. Powiaty"
-  },
-  {
-    "objectID": "index.html#województwa.-powierzchnia-1",
-    "href": "index.html#województwa.-powierzchnia-1",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Województwa. Powierzchnia",
-    "text": "Województwa. Powierzchnia\n\n\n\n\n\n\n\n\nFigure 6: Województwa. Powierzchnia w porządku rosnącym"
-  },
-  {
-    "objectID": "index.html#województwa.-ludność-1",
-    "href": "index.html#województwa.-ludność-1",
-    "title": "Kartogramy Polski. Powierzchnia i ludność",
-    "section": "Województwa. Ludność",
-    "text": "Województwa. Ludność\n\n\n\n\n\n\n\n\nFigure 7: Województwa. Ludność w porządku rosnącym"
-  },
-  {
     "objectID": "index.html#poland.-area-and-population",
     "href": "index.html#poland.-area-and-population",
     "title": "Choropleth Map of Poland\n(Area and Population)",
