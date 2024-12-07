@@ -68,5 +68,82 @@
     "title": "Choropleth Map of Poland\n(Area and Population)",
     "section": "Voivodeships (Provinces). Population",
     "text": "Voivodeships (Provinces). Population\n\n\n\n\n\n\n\n\nFigure 7: Voivodeships (provinces). Population in ascending order"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "",
+    "text": "Jest to przykład tworzenia dynamicznych kartogramów w języku R (RStudio) z wykorzystaniem bibliotek “Leaflet” oraz “ggplot2”. Tematem kartogramów jet powierzchnia i ludność Polski w podziale na województwa oraz wybrane powiaty."
+  },
+  {
+    "objectID": "index.html#polska.-powierzchnia-i-ludność",
+    "href": "index.html#polska.-powierzchnia-i-ludność",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "Polska. Powierzchnia i ludność",
+    "text": "Polska. Powierzchnia i ludność\n\n\nKod\nlabels &lt;- sprintf(\n  \"&lt;strong&gt;Polska&lt;/strong&gt;&lt;br/&gt;stolica: Warszawa \n  &lt;br/&gt;powierzchnia: %g km&lt;sup&gt;2&lt;/sup&gt;\n  &lt;br/&gt;ludność: %gm / mln\", pow_Polski, lud_Polski) %&gt;% \n  lapply(htmltools::HTML)\n\nsymbols &lt;- makeSymbolsSize(\n  values = woj$znacznik,\n  shape = 'circle',\n  color = 'yellow',\n  fillColor = 'yellow',\n  opacity = .7,\n  baseSize = 5\n)\n\nmapa_Polski &lt;- leaflet(data = Poland) %&gt;%\n  addTiles() %&gt;%\n  setView(lng = 20, lat = 52, zoom = 3.5) %&gt;% \n  addPolygons(data = Poland,\n              weight = 1,\n              fillOpacity = 0.8,\n              fillColor = \"#086A87\", \n              label = labels,\n              labelOptions = labelOptions(\n                  style = list(\"font-weight\" = \"normal\", padding = \"3px 8px\"),\n                  textsize = \"15px\", direction = \"auto\")) %&gt;%\n  addMarkers(data = Poland, icon = symbols,  21.03,52.22,2,  popup = \"Warszawa\") %&gt;%\n  addLegend(\"bottomright\", colors = 'yellow', labels = \"stolica\",\n            title = \"Warszawa\",   opacity = 1, ) \n\n\nmapa_Polski\n\n\n\n\n\n\n\n\nRysunek 1: Polska. Powierzchnia i ludność"
+  },
+  {
+    "objectID": "index.html#województwa.-powierzchnia",
+    "href": "index.html#województwa.-powierzchnia",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "Województwa. Powierzchnia",
+    "text": "Województwa. Powierzchnia\n\n\n\n\n\n\n\n\nRysunek 2: Województwa. Powierzchnia"
+  },
+  {
+    "objectID": "index.html#województwa.-ludność",
+    "href": "index.html#województwa.-ludność",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "Województwa. Ludność",
+    "text": "Województwa. Ludność\n\n\n\n\n\n\n\n\nRysunek 3: Województwa. Ludność"
+  },
+  {
+    "objectID": "index.html#powiaty",
+    "href": "index.html#powiaty",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "Powiaty",
+    "text": "Powiaty\n\n\n\n\n\n\n\n\nRysunek 4: Powiaty"
+  },
+  {
+    "objectID": "index.html#wybrane-powiaty",
+    "href": "index.html#wybrane-powiaty",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "Wybrane powiaty",
+    "text": "Wybrane powiaty\nZ ogólnej liczby 380 powiatów Polski wybrano powiaty województw lubuskiego i lubelskiego.\n\n\n\n\n\n\n\n\n\n\n\nRysunek 5: Województwa lubuskie i lubelskie. Powiaty"
+  },
+  {
+    "objectID": "ggplot.html",
+    "href": "ggplot.html",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "",
+    "text": "Kod\nlibrary(sf)\n\nlibrary(ggplot2)\nlibrary(ggspatial)\nlibrary(gganimate)\n\nlibrary(readxl)\n\n\n\n\n\nMapy i dane statystyczne zostały pobrane z poniższych źródeł:\nhttps://gadm.org/download_country_v3.html,\nhttps://stat.gov.pl/statystyka-regionalna/.\n\n\nKod\ng_3sf &lt;- readRDS(\"dane/gadm36_POL_3_sf.rds\")\ng_2sf &lt;- readRDS(\"dane/gadm36_POL_2_sf.rds\")\ng_1sf &lt;- (readRDS(\"dane/gadm36_POL_1_sf.rds\"))\ng_0sf &lt;- (readRDS(\"dane/gadm36_POL_0_sf.rds\"))\n\nsf::st_crs(g_0sf) &lt;- 4326\nsf::st_crs(g_1sf) &lt;- 4326\nsf::st_crs(g_2sf) &lt;- 4326\nsf::st_crs(g_3sf) &lt;- 4326\n\nwoj &lt;- read_excel(\"wojewodztwa.xlsx\")\n\n\n\n\n\nPoniżej przedstawiono animowane mapy wykonane z wykorzystaniem biblioteki “gganimate”, która jest rozszerzeniem pakietu “ggplot2”.\n\n\n\n\n\n\n\n\n\n\n\nRysunek 1: Województwa. Powierzchnia w porządku rosnącym\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRysunek 2: Województwa. Ludność w porządku rosnącym"
+  },
+  {
+    "objectID": "ggplot.html#zastosowane-bibioteki",
+    "href": "ggplot.html#zastosowane-bibioteki",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "",
+    "text": "Kod\nlibrary(sf)\n\nlibrary(ggplot2)\nlibrary(ggspatial)\nlibrary(gganimate)\n\nlibrary(readxl)"
+  },
+  {
+    "objectID": "ggplot.html#źródła-danych",
+    "href": "ggplot.html#źródła-danych",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "",
+    "text": "Mapy i dane statystyczne zostały pobrane z poniższych źródeł:\nhttps://gadm.org/download_country_v3.html,\nhttps://stat.gov.pl/statystyka-regionalna/.\n\n\nKod\ng_3sf &lt;- readRDS(\"dane/gadm36_POL_3_sf.rds\")\ng_2sf &lt;- readRDS(\"dane/gadm36_POL_2_sf.rds\")\ng_1sf &lt;- (readRDS(\"dane/gadm36_POL_1_sf.rds\"))\ng_0sf &lt;- (readRDS(\"dane/gadm36_POL_0_sf.rds\"))\n\nsf::st_crs(g_0sf) &lt;- 4326\nsf::st_crs(g_1sf) &lt;- 4326\nsf::st_crs(g_2sf) &lt;- 4326\nsf::st_crs(g_3sf) &lt;- 4326\n\nwoj &lt;- read_excel(\"wojewodztwa.xlsx\")\n\n\n\n\n\nPoniżej przedstawiono animowane mapy wykonane z wykorzystaniem biblioteki “gganimate”, która jest rozszerzeniem pakietu “ggplot2”."
+  },
+  {
+    "objectID": "ggplot.html#województwa.-powierzchnia",
+    "href": "ggplot.html#województwa.-powierzchnia",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "",
+    "text": "Rysunek 1: Województwa. Powierzchnia w porządku rosnącym"
+  },
+  {
+    "objectID": "ggplot.html#województwa.-ludność",
+    "href": "ggplot.html#województwa.-ludność",
+    "title": "Kartogramy Polski. Powierzchnia i ludność",
+    "section": "",
+    "text": "Rysunek 2: Województwa. Ludność w porządku rosnącym"
   }
 ]
